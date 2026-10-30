@@ -58,8 +58,6 @@ function VillageMap() {
     setZoom(1)
     setPosition({ x: 0, y: 0 })
   }
-
-
   return (
     <div className="village-map">
       <div
@@ -74,7 +72,7 @@ function VillageMap() {
       >
         <svg
           className="village-art"
-          viewBox="0 0 1200 800"
+          viewBox="0 0 2400 1600"
           role="img"
           aria-label="A cozy fantasy village with winding paths, tiny houses, trees, and portfolio landmarks"
           preserveAspectRatio="xMidYMid slice"
@@ -108,42 +106,44 @@ function VillageMap() {
             </filter>
 
           </defs>
-
-
-          {/* Base terrain */}
+          {/* Expanded world background */}
           <rect
-            width="1200"
-            height="800"
+            x="0"
+            y="0"
+            width="2400"
+            height="1600"
             fill="url(#grassGradient)"
           />
+          {/* Existing village region */}
+          <g transform="translate(300 350)">
 
           {/* Distant rolling hills */}
           <path
-            d="M0 180 Q130 55 270 155 T540 140 T830 115 T1200 165 L1200 0 L0 0Z"
+            d="M-900 165 Q-770 40 -620 140 T-300 155 T0 180 Q130 55 270 155 T540 140 T830 115 T1200 165 Q1370 205 1530 140 T1840 160 T2200 125 L2200 -600 L-900 -600Z"
             fill="#c4d99c"
             opacity="0.8"
           />
 
           <path
-            d="M0 250 Q180 125 350 220 T690 190 T1000 215 T1200 165 L1200 0 L0 0Z"
+            d="M-900 250 Q-750 120 -600 215 T-300 230 T0 250 Q180 125 350 220 T690 190 T1000 215 T1200 165 Q1380 130 1530 195 T1850 175 T2200 200 L2200 -600 L-900 -600Z"
             fill="url(#hillGradient)"
           />
 
           {/* Middle-ground meadow */}
           <path
-            d="M0 420 Q170 330 340 425 T680 380 T970 420 T1200 350 L1200 800 L0 800Z"
+            d="M-900 420 Q-750 340 -600 390 T-300 430 T0 420 Q170 330 340 425 T680 380 T970 420 T1200 350 Q1400 300 1590 395 T1900 370 T2200 420 L2200 1550 Q1850 1610 1500 1530 T800 1580 T100 1510 T-900 1570Z"
             fill="#b2cf8e"
           />
 
           {/* Foreground rolling hills */}
           <path
-            d="M0 650 Q170 535 350 650 T690 600 T1000 660 T1200 570 L1200 800 L0 800Z"
+            d="M-900 650 Q-760 530 -600 610 T-300 650 T0 650 Q170 535 350 650 T690 600 T1000 660 T1200 570 Q1400 520 1580 640 T1900 600 T2200 650 L2200 1650 Q1850 1700 1500 1620 T800 1680 T100 1610 T-900 1670Z"
             fill="#91b978"
           />
 
           {/* Soft foreground meadow */}
           <path
-            d="M0 740 Q240 650 440 735 T850 710 T1200 690 L1200 800 L0 800Z"
+            d="M-900 740 Q-700 650 -500 730 T-100 750 T0 740 Q240 650 440 735 T850 710 T1200 690 Q1400 660 1600 720 T1950 700 T2200 740 L2200 1700 Q1850 1750 1500 1670 T800 1730 T100 1660 T-900 1720Z"
             fill="#a4c782"
             opacity="0.9"
           />
@@ -277,6 +277,7 @@ function VillageMap() {
           <g transform="translate(575 480)">
             <rect x="-70" y="-22" width="140" height="44" rx="12" fill="#f6e5bf" stroke="#986b52" strokeWidth="4" />
             <text y="7" textAnchor="middle" fontSize="18" fill="#694c39" fontWeight="bold">SAKURA VILLAGE</text>
+          </g>
           </g>
         </svg>
       </div>

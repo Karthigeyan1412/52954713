@@ -87,8 +87,13 @@ a:focus-visible {
   background: #b8ce91;
 }
 .map-camera {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: 2400px;
+  height: 1600px;
+  left: 50%;
+  top: 50%;
+  margin-left: -1200px;
+  margin-top: -800px;
   transform-origin: center center;
   touch-action: none;
   cursor: grab;
