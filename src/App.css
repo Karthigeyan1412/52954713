@@ -1,0 +1,422 @@
+
+/* ========================================
+   1. GLOBAL STYLES
+======================================== */
+
+:root {
+  font-family: "Trebuchet MS", sans-serif;
+  color: #f8f0ff;
+  background: #171329;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-purple: #49326d;
+  --color-lavender: #d8b4fe;
+  --color-gold: #f4d58d;
+  --color-cream: #f4e7c8;
+  --color-brown: #694c39;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   2. FULL-SCREEN RPG WORLD
+======================================== */
+
+.game-screen {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #b8ce91;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+/* ========================================
+   3. VILLAGE MAP
+======================================== */
+
+.village-map {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  background: #b8ce91;
+}
+.map-camera {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  touch-action: none;
+  cursor: grab;
+}
+
+.map-camera:active {
+  cursor: grabbing;
+}
+
+.village-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Landmark hover effect */
+.map-landmark {
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.map-landmark:hover {
+  filter: brightness(1.08)
+    drop-shadow(0 5px 7px rgb(60 45 45 / 35%));
+}
+
+/* ========================================
+   4. TOP GAME HEADER
+======================================== */
+
+.game-header {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 5%;
+  background: rgb(38 29 57 / 88%);
+  color: #fff0d3;
+}
+
+.game-header .brand {
+  color: var(--color-gold);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.journal-button {
+  padding: 10px 16px;
+  border: 1px solid #bfa5d9;
+  border-radius: 12px;
+  background: var(--color-purple);
+  color: white;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.journal-button:hover {
+  background: #62458b;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   5. WELCOME POP-UP OVER THE MAP
+======================================== */
+
+.welcome-overlay {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 20px 24px;
+  background: rgb(29 22 42 / 30%);
+}
+
+.welcome-popup {
+  position: relative;
+  width: min(620px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  padding: clamp(24px, 4vw, 42px);
+  border: 5px solid #d3b47d;
+  border-radius: 30px;
+  background:
+    radial-gradient(
+      ellipse at top,
+      #fff8e8 0%,
+      transparent 70%
+    ),
+    var(--color-cream);
+  color: #533d4b;
+  text-align: center;
+  box-shadow: 0 22px 65px rgb(35 24 46 / 40%);
+  animation: popup-appear 0.35s ease-out both;
+}
+
+.popup-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid #c4a67c;
+  border-radius: 50%;
+  background: #fff7e6;
+  color: var(--color-brown);
+  font-size: 1.7rem;
+  line-height: 1;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.popup-close:hover {
+  background: #f0d9aa;
+  transform: rotate(90deg);
+}
+
+.welcome-popup .eyebrow {
+  margin: 0 0 16px;
+  color: #92633e;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+}
+
+.welcome-popup h1 {
+  margin: 18px 0;
+  color: #533d4b;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.12;
+}
+
+.welcome-popup h1 span {
+  display: block;
+  margin-top: 8px;
+  color: #8055a1;
+}
+
+.welcome-popup .intro {
+  max-width: 480px;
+  margin: 0 auto;
+  color: #755d50;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   6. CHIBI AVATAR
+======================================== */
+
+.popup-avatar {
+  width: 135px;
+  margin: 10px auto 18px;
+}
+
+.popup-avatar .developer-avatar {
+  width: 100%;
+  max-width: none;
+}
+
+.developer-avatar img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgb(0 0 0 / 25%));
+  animation: avatar-float 4s ease-in-out infinite;
+}
+
+.welcome-popup .primary-button {
+  display: inline-block;
+  padding: 14px 22px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-gold);
+  color: #241a35;
+  font-weight: bold;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.welcome-popup .primary-button:hover {
+  background: #ffe5a6;
+  transform: translateY(-3px);
+}
+
+.popup-hint {
+  margin: 16px 0 0;
+  color: #896e56;
+  font-size: 0.85rem;
+}
+
+/* ========================================
+   7. ANIMATIONS
+======================================== */
+
+@keyframes avatar-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes popup-appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========================================
+   8. MOBILE RESPONSIVENESS
+======================================== */
+
+@media (max-width: 600px) {
+  .game-header {
+    padding: 14px 5%;
+  }
+
+  .welcome-overlay {
+    padding: 78px 14px 18px;
+  }
+
+  .welcome-popup {
+    padding: 30px 20px;
+    border-width: 3px;
+    border-radius: 22px;
+  }
+
+  .popup-avatar {
+    width: 105px;
+  }
+}
+
+@media (max-width: 340px) {
+  .game-header {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .game-header .brand {
+    font-size: 1.05rem;
+  }
+
+  .journal-button {
+    padding: 8px 10px;
+  }
+
+  .welcome-overlay {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .welcome-popup {
+    padding: 28px 14px;
+  }
+
+  .welcome-popup .eyebrow {
+    padding-right: 28px;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* ========================================
+   9. ACCESSIBILITY: REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.map-controls {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-controls button {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #c8ad78;
+  border-radius: 12px;
+  background: #fff8e8;
+  color: #55466f;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgb(45 35 55 / 18%);
+}
+
+.map-controls button:hover {
+  background: #eee3ff;
+}
+
+.map-controls button:focus-visible {
+  outline: 3px solid #8063b5;
+  outline-offset: 3px;
+}
